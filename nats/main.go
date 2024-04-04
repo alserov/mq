@@ -15,6 +15,7 @@ func main() {
 	if err != nil {
 		panic("failed to connect: " + err.Error())
 	}
+	defer conn.Close()
 
 	go func() {
 		for i := range 10 {

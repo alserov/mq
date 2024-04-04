@@ -28,6 +28,7 @@ func main() {
 	if err != nil {
 		panic("failed to init producer: " + err.Error())
 	}
+	defer prod.Close()
 
 	// consumer
 	consCfg := sarama.NewConfig()
@@ -37,6 +38,7 @@ func main() {
 	if err != nil {
 		panic("failed to init consumer: " + err.Error())
 	}
+	defer cons.Close()
 
 	// getting all topic partitions
 	partitions, _ := cons.Partitions(topic)
